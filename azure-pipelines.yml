@@ -18,4 +18,18 @@ steps:
   inputs:
     command: build
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)' # Update this to match your need
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    projects: '**/*.csproj'
+    arguments: '--output $(Build.ArtifactStagingDirectory)'
+    publishWebProjects: true
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: MyBuildArtifacts
