@@ -12,6 +12,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+# Build the project
 steps:
 - task: DotNetCoreCLI@2
   displayName: Build
@@ -20,6 +21,7 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
+# Publish artifacts that were built to the artifact staging directory
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
@@ -29,6 +31,7 @@ steps:
     publishWebProjects: false
     zipAfterPublish: true
 
+# Publish artifacts from the artifact staging directory to Azure Pipelines
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: $(Build.ArtifactStagingDirectory)
