@@ -1,4 +1,6 @@
-﻿# .NET Core Home
+﻿[![Build Status](https://dev.azure.com/AndriiBilousko0166/azure_devops_andriibi_training/_apis/build/status/arestarh.core?branchName=master)](https://dev.azure.com/AndriiBilousko0166/azure_devops_andriibi_training/_build/latest?definitionId=1&branchName=master)
+
+# .NET Core Home
 
 The dotnet/core repository is a good starting point for .NET Core.
 
