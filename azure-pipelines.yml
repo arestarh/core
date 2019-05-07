@@ -7,13 +7,21 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'default'
 
 variables:
   buildConfiguration: 'Release'
 
 # Build the project
 steps:
+
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk'
+  inputs:
+    packageType: sdk
+    version: 2.2.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
@@ -28,6 +36,7 @@ steps:
    $dotnet_path = "$env:ProgramFiles\dotnet\dotnet.exe"
    $project_files | ForEach-Object -Process { & $dotnet_path build $_.FullName '--configuration' $(buildConfiguration) }
   displayName: 'PowerShell Script to execute dotnet build'
+  enabled: true
 
 # Publish artifacts that were built to the artifact staging directory
 - task: DotNetCoreCLI@2
