@@ -8,6 +8,7 @@ trigger:
 
 pool:
   name: Default
+#  vmImage: 'windows-2019' # Use for Microsoft-hosted agents only
 
 variables:
   buildConfiguration: 'Release'
